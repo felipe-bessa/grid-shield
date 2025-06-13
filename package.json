@@ -1,0 +1,33 @@
+{
+  "name": "grid-shield",
+  "version": "1.0.0",
+  "description": "Software utilitário para auxilio das configurações de proteções elétricas em subestações de energia.",
+  "keywords": [
+    "TDD",
+    "Electron",
+    "Bootstrap",
+    "Node",
+    "Jest",
+    "Git",
+    "ANSI",
+    "Protection",
+    "Settings",
+    "Relay"
+  ],
+  "homepage": "https://github.com/felipe-bessa/grid-shield#readme",
+  "bugs": {
+    "url": "https://github.com/felipe-bessa/grid-shield/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/felipe-bessa/grid-shield.git"
+  },
+  "license": "MIT",
+  "author": "Felipe Bessa Souto de Almeida",
+  "type": "commonjs",
+  "main": "src/main/main.js",
+  "scripts": {
+    "start": "electron .",
+    "test": "jest"
+  }
+}
