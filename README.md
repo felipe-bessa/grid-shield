@@ -8,7 +8,7 @@ Software para configuração de proteções elétricas em subestações. Auxilia
 
 - [⏳] Seleção do tipo de atendimento (Carga, Geração, etc.)
 - [⏳] Cálculo das proteções ANSI 50/50N
-- [⏳] Cálculo das proteções ANSI 51/51N
+- [🛠️] Cálculo das proteções ANSI 51/51N
 - [⏳] Visualização do coordenograma das funções ANSI 50/50N, 51/51N
 - [⏳] Cálculo das proteções ANSI 67/67N para ambos os sentidos
 - [⏳] Visualização do coordenograma das funções ANSI 67/67N para ambos os sentidos
