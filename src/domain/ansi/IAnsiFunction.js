@@ -14,6 +14,8 @@
  * Esta interface não deve ser instanciada diretamente. Cada função ANSI (ex: 50, 51, 67) deve estendê-la e implementar seus métodos.
  */
 
+"use strict";
+
 class IAnsiFunction {
   constructor() {
     if (this.constructor === IAnsiFunction) {
@@ -32,8 +34,8 @@ class IAnsiFunction {
    *                   Código da função ANSI.
    * @abstract
    */
-  getCode() {
-    throw new Error("Method getCode() must be implemented.");
+  get code() {
+    throw new Error("Abstract getter 'code' must be overridden by subclass.");
   }
 
   /**
@@ -45,7 +47,9 @@ class IAnsiFunction {
    *                   Nome da função ANSI.
    * @abstract
    */
-  getName() {
-    throw new Error("Method getName() must be implemented.");
+  get name() {
+    throw new Error("Abstract getter 'name' must be overridden by subclass.");
   }
 }
+
+module.exports = IAnsiFunction;
