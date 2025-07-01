@@ -12,6 +12,8 @@ class PowerTransformer {
 
   static #highVoltageLevels = [13.8, 22.0, 34.5];
 
+  static LINE_TO_PHASE_RATIO = Math.sqrt(3);
+
   constructor(
     ratedPower,
     highVoltageLevel,
@@ -47,13 +49,21 @@ class PowerTransformer {
       throw new IllegalArgumentException("irushDelay");
     }
 
-    Object.assign(
-      this,
+    Object.assign(this, {
       ratedPower,
       highVoltageLevel,
       impedance,
       irushRatio,
-      irushDelay
+      irushDelay,
+    });
+  }
+
+  get nominalCurrent() {
+    return Number(
+      parseFloat(
+        this.ratedPower /
+          (this.highVoltageLevel * PowerTransformer.LINE_TO_PHASE_RATIO)
+      ).toFixed(2)
     );
   }
 }
