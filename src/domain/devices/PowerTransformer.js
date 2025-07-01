@@ -72,6 +72,10 @@ class PowerTransformer {
       parseFloat(this.nominalCurrent * (100 / this.impedance)).toFixed(2)
     );
   }
+
+  get inAnsi() {
+    return Number(parseFloat(this.iAnsi * 0.58).toFixed(2));
+  }
 }
 
 module.exports = PowerTransformer;
