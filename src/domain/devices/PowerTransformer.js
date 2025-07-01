@@ -35,6 +35,10 @@ class PowerTransformer {
       throw new IllegalArgumentException("highVoltageLevel");
     }
 
+    if (impedance < 1 || impedance > 7) {
+      throw new IllegalArgumentException("impedance");
+    }
+
     Object.assign(
       this,
       ratedPower,
