@@ -43,6 +43,10 @@ class PowerTransformer {
       throw new IllegalArgumentException("irushRatio");
     }
 
+    if (irushDelay < 0.1 || irushDelay > 1.0) {
+      throw new IllegalArgumentException("irushDelay");
+    }
+
     Object.assign(
       this,
       ratedPower,
