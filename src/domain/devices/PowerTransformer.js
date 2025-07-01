@@ -3,8 +3,13 @@
 "use strict";
 
 const MissingParametersException = require("../../errors/MissingParametersException");
+const IllegalArgumentException = require("../../errors/IllegalArgumentException");
 
 class PowerTransformer {
+  static #ratedPowerValues = [
+    30, 45, 75, 112.5, 150, 225, 300, 500, 750, 1000, 1500, 2000, 2500, 3000,
+  ];
+
   constructor(
     ratedPower,
     highVoltageLevel,
@@ -18,6 +23,10 @@ class PowerTransformer {
 
     if (!highVoltageLevel) {
       throw new MissingParametersException("highVoltageLevel");
+    }
+
+    if (!PowerTransformer.#ratedPowerValues.includes(ratedPower)) {
+      throw new IllegalArgumentException("ratedPower");
     }
 
     Object.assign(
