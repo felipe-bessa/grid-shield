@@ -39,6 +39,10 @@ class PowerTransformer {
       throw new IllegalArgumentException("impedance");
     }
 
+    if (irushRatio < 5 || irushRatio > 20) {
+      throw new IllegalArgumentException("irushRatio");
+    }
+
     Object.assign(
       this,
       ratedPower,
