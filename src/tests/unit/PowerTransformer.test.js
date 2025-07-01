@@ -54,8 +54,9 @@
 
 "use strict";
 
-const IllegalArgumentException = require("../../errors/IllegalArgumentException");
+const PowerTransformer = require("../../domain/devices/PowerTransformer");
 const MissingParametersException = require("../../errors/MissingParametersException");
+const IllegalArgumentException = require("../../errors/IllegalArgumentException");
 
 describe("PowerTransformer", () => {
   const LINE_TO_PHASE_RATIO = Math.sqrt(3);
