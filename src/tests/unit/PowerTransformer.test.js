@@ -50,6 +50,7 @@
  * @requires PowerTransformer
  * @requires MissingParametersException
  * @requires IllegalArgumentException
+ * @requires IllegalStateException
  */
 
 "use strict";
@@ -57,6 +58,7 @@
 const PowerTransformer = require("../../domain/devices/PowerTransformer");
 const MissingParametersException = require("../../errors/MissingParametersException");
 const IllegalArgumentException = require("../../errors/IllegalArgumentException");
+const IllegalStateException = require("../../errors/IllegalStateException");
 
 describe("PowerTransformer", () => {
   const LINE_TO_PHASE_RATIO = Math.sqrt(3);
@@ -310,7 +312,40 @@ describe("PowerTransformer", () => {
             ratedPower / (highVoltageLevel * LINE_TO_PHASE_RATIO)
           ).toFixed(2)
         );
-        expect(transformer.nominalCurrent).toBe(expectedCurrent);
+
+        const nominalCurrent = transformer.nominalCurrent;
+        expect(nominalCurrent).toBe(expectedCurrent);
+        expect(typeof nominalCurrent).toBe("number");
+        expect(isNaN(nominalCurrent)).toBe(false);
+        expect(isFinite(nominalCurrent)).toBe(true);
+      });
+    });
+
+    describe("when internal calculation for nominal current fails", () => {
+      it("should trigger IllegalStateException if calculation results in Infinity", () => {
+        const faultyTransformer = createPowerTransformer(1000, 13.8);
+        Object.defineProperty(faultyTransformer, "highVoltageLevel", {
+          value: 0.00000000001,
+        });
+
+        expect(() => faultyTransformer.nominalCurrent).toThrow(
+          IllegalStateException
+        );
+      });
+
+      it("should trigger IllegalStateException if calculation results in Nan", () => {
+        const faultyTransformer = createPowerTransformer(1000, 13.8);
+        Object.defineProperty(faultyTransformer, "ratedPower", {
+          value: 0,
+        });
+
+        Object.defineProperty(faultyTransformer, "highVoltageLevel", {
+          value: 0,
+        });
+
+        expect(() => faultyTransformer.nominalCurrent).toThrow(
+          IllegalStateException
+        );
       });
     });
   });
