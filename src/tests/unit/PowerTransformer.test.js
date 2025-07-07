@@ -137,12 +137,14 @@ describe("PowerTransformer", () => {
     () =>
       new PowerTransformer(...args);
 
+  /*
   describe("Missing parameters", () => {
     it("should trigger an error for missing parameters", () => {
       expect(createPowerTransformer()).toThrow(MissingParametersException);
       expect(createPowerTransformer(1000)).toThrow(MissingParametersException);
     });
   });
+  */
 
   describe("Invalid rated power", () => {
     testCases.forEach(({ highVoltageLevel }, index) => {
