@@ -1,4 +1,4 @@
-// src/test/unit/PowerTransformer/requiredFields.test.js
+// src/tests/unit/PowerTransformer/requiredFields.test.js
 
 /**
  * @file requiredFields.test.js
