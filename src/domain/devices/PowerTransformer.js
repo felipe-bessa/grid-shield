@@ -4,6 +4,7 @@
 
 const MissingParametersException = require("../../errors/MissingParametersException");
 const IllegalArgumentException = require("../../errors/IllegalArgumentException");
+const IllegalMutationException = require("../../errors/IllegalMutationException");
 
 class PowerTransformer {
   static #ratedPowerValues = [
@@ -55,6 +56,26 @@ class PowerTransformer {
       impedance,
       irushRatio,
       irushDelay,
+    });
+
+    Object.freeze(this);
+
+    return new Proxy(this, {
+      set() {
+        throw new IllegalMutationException(
+          "Cannot define new properties on PowerTransformer"
+        );
+      },
+      defineProperty() {
+        throw new IllegalMutationException(
+          "Cannot update properties on PowerTransformer"
+        );
+      },
+      deleteProperty() {
+        throw new IllegalMutationException(
+          "Cannot delete properties from PowerTransformer"
+        );
+      },
     });
   }
 
